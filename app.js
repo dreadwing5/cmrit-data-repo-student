@@ -1,112 +1,84 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require("mysql");
+require("dotenv").config();
+const express = require("express");
 const app = express();
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "student_module",
-});
-connection.connect(function (err) {
-  if (!err) {
-    console.log("Database is connected ...");
-  } else {
-    console.log("Error connecting database ...");
-  }
-});
-//using Body Parser
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+const flash = require("connect-flash");
+const session = require("express-session");
+const connection = require("./configs/DBConnection");
+const passport = require("passport");
+const fs = require("fs");
 
-app.use(express.static(__dirname+'/public'));
+require("./configs/passport")(passport);
+
+// Setting public direction
+app.use(express.static(__dirname + "/public"));
+
+app.use("/scripts", express.static(__dirname + "/node_modules"));
+
+// Set ejs template
 app.set("view engine", "ejs");
-// To use CKeditor on node
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/node_modules/ckeditor'));
-// app.use(express.static(__dirname + '/index.html'));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-// app.get("/",function(req,res){
-//     res.sendFile(__dirname + "/public/pages/index.html");
-    
-// });
-app.get("/login", (req, res) => {
-    res.render("login");
+//Express Session
+
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Connect Flash
+
+app.use(flash());
+
+//Global Vars
+
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
 });
 
-app.get("/", (req,res) => {
-  res.render("home");
-});
+// Routes
+app.use("/", require("./routes/index"));
+app.use("/", require("./routes/user"));
+app.use("/", require("./routes/admin"));
+app.use("/", require("./routes/form_submission"));
+app.use("/", require("./routes/report"));
 
-app.get("/students/eventsAttended", (req, res) => {
-  res.render("fields/stu_eventsAttended");
-});
+//Create Default admin
 
-app.post("/students/eventsAttended", (req, res) => {
-  console.log(req.body);
-  connection.query("INSERT INTO eventsAttended SET ?", req.body, function (
-    error,
-    results,
-    fields
-  ) {
-    if (error) {
-      res.send({
-        code: 400,
-        failed: "error ocurred",
-      });
-    } else {
-      res.send({ code: 200, message: "Added successfully!" });
+connection.query(
+  "SELECT mailid FROM faculty WHERE mailid = ?",
+  [process.env.ADMIN_MAIL],
+  (err, data) => {
+    if (err) {
+      console.log(err);
     }
-  });
-});
-
-
-app.get("/students/Awards", (req, res) => {
-  res.render("fields/stu_awards");
-});
-
-app.post("/students/Awards", (req, res) => {
-  console.log(req.body);
-  connection.query("INSERT INTO Awards SET ?", req.body, function (
-    error,
-    results,
-    fields
-  ) {
-    if (error) {
-      res.send({
-        code: 400,
-        failed: "error ocurred",
+    if (!data.length) {
+      connection.query("INSERT INTO faculty SET ? ", {
+        id: process.env.ADMIN_ID,
+        mailid: process.env.ADMIN_MAIL,
+        password: process.env.ADMIN_PASSWORD,
+        role: "admin",
       });
-    } else {
-        res.send({ code: 200, message: "Added successfully!" });
     }
-  });
-});
+  }
+);
 
-app.get("/students/placement", (req, res) => {
-  res.render("fields/stu_placement");
-});
-
-app.post("/students/placement", (req, res) => {
-  console.log(req.body);
-  connection.query("INSERT INTO placement SET ?", req.body, function (
-    error,
-    results,
-    fields
-  ) {
-    if (error) {
-      res.send({
-        code: 400,
-        failed: "error ocurred",
-      });
-    } else {
-        res.send({ code: 200, message: "Added successfully!" });
-    }
-  });
-});
-
-app.listen(3000, function () {
-    console.log("Server ready on Port 3000");
+// Server Running at port 4000
+app.listen("4000", () => {
+  console.log("Server Started ... http://localhost:4000");
 });

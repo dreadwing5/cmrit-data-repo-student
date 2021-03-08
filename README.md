@@ -1,13 +1,10 @@
-# Data-Repository
- To capture all activities organized/participated with in and out side of CMRIT.
+# DataRepository
 
-How to get the repository ruuning on your local machine? <br>
- 1.Download the zip file and extract it at appropriate location <br>
- 2.Install NodeJS on your local machine https://nodejs.org/en/download/package-manager/ <br>
- 3.To check if you have Node.js installed, run this command in your terminal: node -v <br>
- 4.To confirm that you have npm installed you can run this command in your terminal: npm -v <br>
- 5.Install Nodemon using the npm by the following command: npm install -g nodemon <br>
- 6.Now that we have setup Node , type the following command Nodemon app.js in your current directory to set up our local server <br>
- 7.Go to your browser and type http://localhost:3000/ <br>
- 8.That's it <br>
-
+## TODO : 
+- [ ] Add All option in report generation
+- [x] UI Update for adding more fields (Show Modal box/Seperate Page)
+- [ ] Add Search option for searching through various modules
+- [ ] Create tables for new fields
+- [ ] Show error if data couldn't be submitted
+- [ ] Add Auto increment id on each field
+- [ ] Add foreign key (faculty) on each module
