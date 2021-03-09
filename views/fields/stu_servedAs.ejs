@@ -1,0 +1,123 @@
+<%- include ("../partials/header") %>
+
+
+  <div class="container-fluid">
+
+    <section id="form">
+      <form id="myForm" class="needs-validation" novalidate action="/students/stu_servedAs">
+        <div class="container-fluid">
+
+          <!-- Header Section -->
+
+          <div class="row data-row">
+            <div class="col-md-8 mb-3">
+              <h4 class="mb-3 title">Student Served As Data Entry</h4>
+            </div>
+            <div class="col-md-4 mb-3 report">
+              <a href="/students/search" class="btn btn-sm btn-primary shadow-sm"><i
+                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </div>
+          </div>
+          <div class="row data-row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <label class="required">University/College Name</label>
+                <input type="text" name="collegeName" class="form-control" required>
+                <div class="invalid-feedback">
+                  Valid University/College name is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <label class="required">Event Name</label>
+                <input type="text" name="eventName" class="form-control" required>
+                <div class="invalid-feedback">
+                  Valid Event Name is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row data-row">
+            <div class="col-md-6 mb-3">
+              <label class="required">Start Date</label>
+              <input type="date" name="startDate" class="form-control" onchange="setDate()" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="required">End Date</label>
+              <input type="date" name="endDate" class="form-control" onchange="setDate()" required>
+            </div>
+          </div>
+
+          <div class="row data-row">
+
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <label class="required">Served As</label>
+                <select name="servedAs" class="custom-select d-block w-100" id="selectBox" onChange="changeFunc();" required>
+                  <option value="">Choose...</option>
+                  <option>Resource Persons</option>
+                  <option>Evaluator</option>
+                  <option value="others">Others</option>
+                </select>
+                <input name="servedAs" placeholder="Mention Here..." class="form-control other-text" type="text"
+                  style="display: none" id="textboxes">
+                <div class="invalid-feedback">
+                  Please select a valid prize.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <label class="required">COE</label>
+
+                <!-- COE -->
+                <%- include ("../partials/coe") %>
+
+                  <div class="invalid-feedback">
+                    Please provide a valid type.
+                  </div>
+              </div>
+
+
+              <!-- <div class="col-md-6 mb-3">
+
+              <label class="required">Submission Date</label>
+              <input type="date" class="form-control" name="filterDate" required>
+
+              <div class="invalid-feedback">
+                Please provide a valid details.
+              </div>
+            </div> -->
+
+
+            </div>
+          </div>
+          <%- include ("../partials/description") %>
+
+
+            <div class="submit-button"><button class="btn btn-primary btn-lg btn-block buttons" type="submit"
+                id="btnSubmit">
+                Submit</button>
+            </div>
+        </div>
+
+
+
+      </form>
+
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+
+  <%- include ("../partials/footer") %>
+
+    <script type="text/javascript" src="/js/textbox.js"></script>
+    <script type="text/javascript" src="/js/date.js"></script>
+
+
+    </body>
+
+    </html>
