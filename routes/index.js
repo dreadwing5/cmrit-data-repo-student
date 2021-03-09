@@ -83,6 +83,14 @@ router.get("/students/projects", ensureAuthenticated, (req, res) => {
   });
 });
 
+router.get("/students/entrepreneurship", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_entrepreneurship", {
+    title: "Entrepreneurship Details",
+    module: "Student",
+    Username: req.user.name
+  });
+});
+
 
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({
