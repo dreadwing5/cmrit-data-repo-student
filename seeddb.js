@@ -139,7 +139,21 @@ let seeddb = async () => {
     "Create Table stu_entrepreneurship(rcid varchar(255), companyType varchar(255),companyNameAddress varchar(225), date Date, revenue varchar(255), objectives varchar(255), benefits varchar(255), department varchar(255), COE varchar(255), description varchar(255), filterDate Date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Student Exchange Program Table created successfully");
+    console.log("Student Entrepreneurship Details Table created successfully");
+  });
+
+  sql =
+    "Create Table stu_servedAs(collegeName varchar(255), eventName varchar(255), startDate Date, endDate Date, servedAs varchar(255), COE varchar(255), description varchar(255), filterDate Date);";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Student Served As Table created successfully");
+  });
+
+  sql =
+    "Create Table stu_parentsMeeting(parentName varchar(255), meetingDate Date, mobNumber varchar(255), email varchar(255), address varchar(255), purpose varchar(255), description varchar(255), filterDate Date);";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Student Parents' Meeting Table created successfully");
   });
 
   sql = "Create Table dept_list(depname varchar(255));";
