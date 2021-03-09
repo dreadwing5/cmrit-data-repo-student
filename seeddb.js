@@ -85,55 +85,69 @@ let seeddb = async () => {
     if (err) throw err;
     console.log("Placements Table created successfully");
   });
-  
+
   sql =
     "Create Table stu_projects(type varchar(255), sem varchar(255), title varchar(255), duration varchar(255), location varchar(255), startDate date, endDate date, prize varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Projects Table created successfully");
   });
-  
+
   sql =
     "Create Table alumni(usn varchar(255), studentName varchar(255), personalmailId varchar(225), mobileNumber varchar(225), companyName varchar(225), companymailId varchar(225), yearofJoin Date, yearofPass Date, jobLocation varchar(225));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Alumni Table created successfully");
   });
-  
+
   sql =
     "Create Table higherStudies(usn varchar(255), studentName varchar(255), studiestype varchar(225), description varchar(225), exams varchar(225), date Date, department varchar(255),COE varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Higher Studies Table created successfully");
   });
-  
+
   sql =
     "Create Table stu_mooc(usn varchar(255), studentName varchar(255), startDate Date, endDate Date, description varchar(225), courseName varchar(225), boolExam varchar(225), department varchar(255),COE varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("MOOC Table created successfully");
   });
-  
+
   sql =
     "Create Table stu_bookPublication(rcid varchar(255),bookName varchar(255), publisherName varchar(255), isbn varchar(255), issue varchar(255), description varchar(225), date Date, COE varchar(255), filterDate date, doi varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Book Publication Table created successfully");
   });
-  
+
   sql =
     "Create Table stu_journalPublication(usn varchar(255), studentName varchar(255), description varchar(225), department varchar(255),COE varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Journal Publication Table created successfully");
   });
-  
+
   sql =
     "Create Table stu_exhangeProgram(usn varchar(255), studentName varchar(255),description varchar(225), startDate Date, endDate Date, department varchar(255),COE varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Student Exchange Program Table created successfully");
   });
+
+  sql =
+    "Create Table stu_entrepreneurship(rcid varchar(255), companyType varchar(255),companyNameAddress varchar(225), date Date, revenue varchar(255), objectives varchar(255), benefits varchar(255), department varchar(255), COE varchar(255), description varchar(255), filterDate Date);";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Student Exchange Program Table created successfully");
+  });
+
+  sql = "Create Table dept_list(depname varchar(255));";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Department Table Created successfully");
+  });
+
 };
 
 seeddb();
