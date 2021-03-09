@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon ./server.js localhost:4000",
     "start": "nodemon app.js"
   },
   "repository": {
