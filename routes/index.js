@@ -112,9 +112,24 @@ router.get("/students/bridgeCourses", ensureAuthenticated, (req, res) => {
     title: "Bridge Courses",
     module: "Student",
     Username: req.user.name
-  })
+  });
 });
 
+router.get("/students/ideaRepository", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_ideaRepository", {
+    title: "Idea Repository",
+    module: "Student",
+    Username: req.user.name
+  });
+});
+
+router.get("/students/internshipCell", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_internshipCell", {
+    title: "Internship Cell",
+    module: "Student",
+    Username: req.user.name
+  });
+});
 
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({

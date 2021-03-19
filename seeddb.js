@@ -162,6 +162,17 @@ let seeddb = async () => {
     console.log("Bridge Courses Table created successfully");
   });
   
+  sql = "Create Table stu_ideaRepository(ideaDate date, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Idea Repository Table created successfully");
+  });
+
+  sql = "Create Table stu_internshipCell(title varchar(255), companyName varchar(255), semester varchar(255), stipend varchar(255), duration varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Internship Cell Table created successfully");
+  });
   
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {

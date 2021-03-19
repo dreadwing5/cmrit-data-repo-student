@@ -1,0 +1,79 @@
+<%- include ("../partials/header") %>
+
+
+  <div class="container-fluid">
+
+    <section id="form">
+      <form id="myForm" class="needs-validation" novalidate action="/students/stu_ideaRepository">
+        <div class="container-fluid">
+
+          <!-- Header Section -->
+
+          <div class="row data-row">
+            <div class="col-md-8 mb-3">
+              <h4 class="mb-3 title">Idea Repository Data Entry</h4>
+            </div>
+            <div class="col-md-4 mb-3 report">
+              <a href="/students/search" class="btn btn-sm btn-primary shadow-sm"><i
+                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </div>
+          </div>
+          <div class="row data-row">
+            <div class="col-md-6 mb-3">
+              <label class="required">Idea Generation Date</label>
+              <input type="date" name="ideaDate" class="form-control" onchange="setDate()" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                <label class="required">COE</label>
+
+                <!-- COE -->
+                <%- include ("../partials/coe") %>
+
+                  <div class="invalid-feedback">
+                    Please provide a valid type.
+                  </div>
+              </div>
+
+
+              <!-- <div class="col-md-6 mb-3">
+
+              <label class="required">Submission Date</label>
+              <input type="date" class="form-control" name="filterDate" required>
+
+              <div class="invalid-feedback">
+                Please provide a valid details.
+              </div>
+            </div> -->
+
+
+            </div>
+          </div>
+          <%- include ("../partials/description") %>
+
+
+            <div class="submit-button"><button class="btn btn-primary btn-lg btn-block buttons" type="submit"
+                id="btnSubmit">
+                Submit</button>
+            </div>
+        </div>
+
+
+
+      </form>
+
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+
+  <%- include ("../partials/footer") %>
+
+    <script type="text/javascript" src="/js/textbox.js"></script>
+    <script type="text/javascript" src="/js/date.js"></script>
+
+
+    </body>
+
+    </html>
