@@ -156,6 +156,13 @@ let seeddb = async () => {
     console.log("Student Parents' Meeting Table created successfully");
   });
 
+  sql = "Create Table stu_bridgeCourses(dept varchar(255), semester varchar(255), subName varchar(255), subCode varchar(255), topic varchar(255), sessionDate date, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Bridge Courses Table created successfully");
+  });
+  
+  
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
