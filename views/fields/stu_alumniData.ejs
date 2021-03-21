@@ -1,0 +1,146 @@
+<%- include ("../partials/header") %>
+
+<div class="container-fluid">
+    <section id="form">
+        <form id="myForm" class="needs-validation" novalidate action="/students/stu_alumniData">
+            <div class="container-fluid">
+                <div class="row data-row">
+                    <div class="col-md-8 mb-3">
+                        <h4 class="mb-3 title">Alumni Data Entry</h4>
+                    </div>
+                    <div class="col-md-4 mb-3 report">
+                        <a href="/students/search" class="btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Student Name</label>
+                        <input type="text" name="stuName" class="form-control">
+                        <div class="invalid-feedback">
+                            Valid name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="required">USN</label>
+                        <input type="text" name="usn" class="form-control">
+                        <div class="invalid-feedback">
+                            Valid USN is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Personal Email ID</label>
+                        <input type="email" name="email" class="form-control">
+                        <div class="invalid-feedback">
+                            Valid email is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Mobile Number</label>
+                        <input type="text" name="mobNumber" class="form-control">
+                        <div class="invalid-feedback">
+                            Valid mobile number is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Company Name</label>
+                        <input type="text" name="companyName" class="form-control" onchange="setDate()">
+                        <div class="invalid-feedback">
+                            Valid company name is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Company Email ID</label>
+                        <input type="email" class="form-control" name="companyEmail">
+                        <div class="invalid-feedback">
+                            Valid company email is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Job Location</label>
+                        <select name="location" class="custom-select d-block w-100">
+                            <option value="">Choose...</option>
+                            <option>India</option>
+                            <option>Abroad</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="required">Department</label>
+                        <select name="dept" class="custom-select d-block w-100">
+                            <option value="">Choose...</option>
+                            <option>CSE</option>
+                            <option>ISE</option>
+                            <option>ECE</option>
+                            <option>TCE</option>
+                            <option>EEE</option>
+                            <option>CIV</option>
+                            <option>MECH</option>
+                            <option>MBA</option>
+                            <option>MCA</option>
+                            <option>Basic Sciences</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-4 mb-3">
+                        <label class="required">Year of Joining</label>
+                        <input type="number" min="2000" max="2021" name="joining" class="form-control" onchange="setDate()">
+                        <div class="invalid-feedback">
+                            Valid year of joining is required.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="required">Year of Passing</label>
+                        <input type="number" min="2000" max="2021" class="form-control" name="passing">
+                        <div class="invalid-feedback">
+                            Valid year of passing is required.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="required">Job Place or City</label>
+                        <input type="text" class="form-control" name="place">
+                        <div class="invalid-feedback">
+                            Valid job place or city is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="row data-row">
+                    <div class="col-md-12 mb-3">
+                        <label class="required">COE</label>
+                        <!-- COE -->
+                        <%- include ("../partials/coe") %>
+
+                        <div class="invalid-feedback">
+                            Please select a valid type.
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <%- include ("../partials/description") %>
+                <button class="btn btn-primary btn-lg btn-block buttons" type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+
+
+</div>
+
+<!-- Footer -->
+<%- include ("../partials/footer") %>
+
+
+<script type="text/javascript" src="/js/date.js"></script>
+
+
+</body>
+
+</html>
