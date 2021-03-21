@@ -173,6 +173,12 @@ let seeddb = async () => {
     if (err) throw err;
     console.log("Internship Cell Table created successfully");
   });
+
+  sql = "Create Table stu_exchangeProgram(collegeName varchar(255), programName varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Exchange Program Table created successfully");
+  });
   
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
