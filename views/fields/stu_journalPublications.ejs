@@ -127,8 +127,8 @@
                 <input type="checkbox" name="index" value="Scopus"><label>Scopus</label><br>
                 <input type="checkbox" name="index" value="SCI"><label>SCI</label><br>
                 <input type="checkbox" name="index" value="Web of Science"><label>Web of Science</label><br>
-                <input type="checkbox" id="others" name="index"><label>Others</label><input type="text"
-                  id="tOthers"><br>
+                <input type="checkbox" id="others" name="index"><label>Others</label><input type="text" id="tOthers"
+                  style="display: none" placeholder="Mention Here..."><br>
               </div>
             </div>
           </div>
@@ -153,7 +153,15 @@
   <!-- Footer -->
 
   <%- include ("../partials/footer") %>
-
+    <script>
+      var a = document.getElementById("others");
+      a.addEventListener("click", function (e) {
+        if (a.checked == true)
+          document.getElementById("tOthers").style.display = "block";
+        else
+          document.getElementById("tOthers").style.display = "none";
+      });
+    </script>
     <script type="text/javascript" src="/js/date.js"></script>
     </body>
 
