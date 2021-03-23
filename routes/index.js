@@ -162,6 +162,14 @@ router.get("/students/results", ensureAuthenticated, (req, res) => {
     Username: req.user.name
   });
 });
+
+router.get("/students/journalPublications", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_journalPublications", {
+    title: "Journal and Conference Publications",
+    module: "Student",
+    Username: req.user.name
+  });
+});
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({
   destination: "./public/uploads",

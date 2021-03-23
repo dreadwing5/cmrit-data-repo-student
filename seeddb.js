@@ -36,26 +36,6 @@ let seeddb = async () => {
     console.log("Faculty Table created successfully");
   });
 
-  sql =
-    "Create Table fac_awards(id varchar(255), category varchar(255),department varchar(255), filterDate Date, level varchar(255), eventName varchar(255), awardedBy varchar(255), status varchar(255), date Date, description text, COE varchar(255))";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Awards Table created successfully");
-  });
-
-  sql =
-    "Create Table fac_eventsAttended(id varchar(255), activityType varchar(255),department varchar(255), filterDate Date, topic varchar(255), attendedAt varchar(255), activityName varchar(255), objective text, benefits text, startDate Date, endDate Date, level varchar(255), description text, COE varchar(255))";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Events Attended Table created successfully");
-  });
-
-  sql =
-    "Create Table fac_clubActivities(clubName varchar(255), topic varchar(255), department varchar(255), filterDate Date, resourcePerson varchar(255), designation varchar(255), company varchar(255), objective text, benefits text, participantNo varchar(255), website varchar(255), startDate Date, endDate Date, sem varchar(255), COE varchar(255), description text)";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Club Activities Table created successfully");
-  });
 
   sql =
     "Create Table student(usn varchar(255), password varchar(255), name varchar(255), department varchar(255), mailId varchar(255), phoneNumber varchar(255), primary key (usn))";
@@ -94,20 +74,6 @@ let seeddb = async () => {
   });
 
   sql =
-    "Create Table alumni(usn varchar(255), studentName varchar(255), personalmailId varchar(225), mobileNumber varchar(225), companyName varchar(225), companymailId varchar(225), yearofJoin Date, yearofPass Date, jobLocation varchar(225));";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Alumni Table created successfully");
-  });
-
-  sql =
-    "Create Table higherStudies(usn varchar(255), studentName varchar(255), studiestype varchar(225), description varchar(225), exams varchar(225), date Date, department varchar(255),COE varchar(255));";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Higher Studies Table created successfully");
-  });
-
-  sql =
     "Create Table stu_mooc(usn varchar(255), studentName varchar(255), startDate Date, endDate Date, description varchar(225), courseName varchar(225), boolExam varchar(225), department varchar(255),COE varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
@@ -122,10 +88,10 @@ let seeddb = async () => {
   });
 
   sql =
-    "Create Table stu_journalPublication(usn varchar(255), studentName varchar(255), description varchar(225), department varchar(255),COE varchar(255));";
+    "Create Table stu_journalPublications(name varchar(255), rcid varchar(255), pubName varchar(255), title varchar(255), isbn varchar(255), issn varchar(255), edition varchar(255), doi varchar(255), type varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Journal Publication Table created successfully");
+    console.log("Journal and Conference Publications Table created successfully");
   });
 
   sql =
@@ -161,7 +127,7 @@ let seeddb = async () => {
     if (err) throw err;
     console.log("Bridge Courses Table created successfully");
   });
-  
+
   sql = "Create Table stu_ideaRepository(ideaDate date, coe varchar(255), description varchar(255), filterDate date);"
   db.query(sql, (err, result) => {
     if (err) throw err;
