@@ -191,7 +191,13 @@ let seeddb = async () => {
     if (err) throw err;
     console.log("Higher Studies Table created successfully");
   });
-  
+
+  sql = "Create Table stu_results(dept varchar(255), semester varchar(255), resultDate date, academicYear varchar(255), section char(1), avgCGPA float, passPercent float, nFail int, nAppear int, nPass int, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Results(After Reval) Table created successfully");
+  });
+
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
