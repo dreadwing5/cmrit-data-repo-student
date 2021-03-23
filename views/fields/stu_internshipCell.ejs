@@ -16,14 +16,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Company Name</label>
-                        <input type="text" name="companyName" class="form-control">
+                        <input type="text" name="companyName" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid company name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Title/Domain of the intern project</label>
-                        <input type="text" name="title" class="form-control">
+                        <input type="text" name="title" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid domain is required.
                         </div>
@@ -32,14 +32,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Stipend</label>
-                        <input type="text" name="stipend" class="form-control">
+                        <input type="text" name="stipend" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid stipend is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Semester</label>
-                        <select name="semester" class="custom-select d-block w-100">
+                        <select name="semester" class="custom-select d-block w-100" required>
                             <option value="">Choose...</option>
                             <option>First Semester</option>
                             <option>Second Semester</option>
@@ -57,26 +57,31 @@
                 </div>
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
-
                         <label class="required">Start Date</label>
-                        <input type="date" name="startDate" class="form-control" onchange="setDate()">
+                        <input type="date" name="startDate" class="form-control" onchange="setDate()" required>
+                        <div class="invalid-feedback">
+                            Valid start date is required.
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">End Date</label>
-                        <input type="date" class="form-control" name="endDate">
+                        <input type="date" class="form-control" name="endDate" required>
+                        <div class="invalid-feedback">
+                            Valid end date is required.
+                        </div>
 
                     </div>
                 </div>
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Duration</label>
-                        <input type="text" name="duration" class="form-control">
+                        <input type="text" name="duration" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid duration is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="required">COE</label>
+                        <label>COE</label>
                         <!-- COE -->
                         <%- include ("../partials/coe") %>
 

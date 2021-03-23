@@ -16,14 +16,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Student Name</label>
-                        <input type="text" name="stuName" class="form-control">
+                        <input type="text" name="stuName" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">USN</label>
-                        <input type="text" name="usn" class="form-control">
+                        <input type="text" name="usn" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid USN is required.
                         </div>
@@ -32,14 +32,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Personal Email ID</label>
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid email is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Mobile Number</label>
-                        <input type="text" name="mobNumber" class="form-control">
+                        <input type="text" name="mobNumber" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid mobile number is required.
                         </div>
@@ -48,14 +48,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Company Name</label>
-                        <input type="text" name="companyName" class="form-control" onchange="setDate()">
+                        <input type="text" name="companyName" class="form-control" onchange="setDate()" required>
                         <div class="invalid-feedback">
                             Valid company name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Company Email ID</label>
-                        <input type="email" class="form-control" name="companyEmail">
+                        <input type="email" class="form-control" name="companyEmail" required>
                         <div class="invalid-feedback">
                             Valid company email is required.
                         </div>
@@ -64,7 +64,7 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">Job Location</label>
-                        <select name="location" class="custom-select d-block w-100">
+                        <select name="location" class="custom-select d-block w-100" required>
                             <option value="">Choose...</option>
                             <option>India</option>
                             <option>Abroad</option>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Department</label>
-                        <select name="dept" class="custom-select d-block w-100">
+                        <select name="dept" class="custom-select d-block w-100" required>
                             <option value="">Choose...</option>
                             <option>CSE</option>
                             <option>ISE</option>
@@ -90,21 +90,21 @@
                 <div class="row data-row">
                     <div class="col-md-4 mb-3">
                         <label class="required">Year of Joining</label>
-                        <input type="number" min="2000" max="2021" name="joining" class="form-control" onchange="setDate()">
+                        <input type="number" min="2000" max="2021" name="joining" class="form-control" onchange="setDate()" required>
                         <div class="invalid-feedback">
                             Valid year of joining is required.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="required">Year of Passing</label>
-                        <input type="number" min="2000" max="2021" class="form-control" name="passing">
+                        <input type="number" min="2000" max="2021" class="form-control" name="passing" required>
                         <div class="invalid-feedback">
                             Valid year of passing is required.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="required">Job Place or City</label>
-                        <input type="text" class="form-control" name="place">
+                        <input type="text" class="form-control" name="place" required>
                         <div class="invalid-feedback">
                             Valid job place or city is required.
                         </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="row data-row">
                     <div class="col-md-12 mb-3">
-                        <label class="required">COE</label>
+                        <label>COE</label>
                         <!-- COE -->
                         <%- include ("../partials/coe") %>
 

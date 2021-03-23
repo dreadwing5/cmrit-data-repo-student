@@ -31,16 +31,16 @@
             <div class="col-md-6 mb-3">
               <label class="required">Subject Code</label>
               <input type="text" name="subCode" class="form-control" onchange="setDate()" required>
-            </div>
-            <div class="invalid-feedback">
-              Valid subject code is required.
+              <div class="invalid-feedback">
+                Valid subject code is required.
+              </div>
             </div>
           </div>
 
           <div class="row data-row">
             <div class="col-md-6 mb-3">
               <label for="type" class="required">Department</label>
-              <select name="dept" class="custom-select d-block w-100">
+              <select name="dept" class="custom-select d-block w-100" required>
                 <option value="">Choose...</option>
                 <option>CSE</option>
                 <option>ISE</option>
@@ -60,7 +60,7 @@
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label class="required">Semester</label>
-                <select name="semester" class="custom-select d-block w-100">
+                <select name="semester" class="custom-select d-block w-100" required>
                   <option value="">Choose...</option>
                   <option>First Semester</option>
                   <option>Second Semester</option>
@@ -85,6 +85,9 @@
             <div class="col-md-6 mb-3">
               <label class="required">Session Date</label>
               <input type="date" name="sessionDate" class="form-control" required>
+              <div class="invalid-feedback">
+                Valid session date is required.
+              </div>
             </div>
           </div>
 
@@ -92,7 +95,7 @@
 
             <div class="col-md-12 mb-3">
               <div class="form-group">
-                <label class="required">COE</label>
+                <label>COE</label>
                 <!-- COE -->
                 <%- include ("../partials/coe") %>
 

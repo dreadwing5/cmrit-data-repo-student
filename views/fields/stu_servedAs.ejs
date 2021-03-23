@@ -42,10 +42,16 @@
             <div class="col-md-6 mb-3">
               <label class="required">Start Date</label>
               <input type="date" name="startDate" class="form-control" onchange="setDate()" required>
+              <div class="invalid-feedback">
+                Valid start date is required.
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label class="required">End Date</label>
               <input type="date" name="endDate" class="form-control" onchange="setDate()" required>
+              <div class="invalid-feedback">
+                Valid end date is required.
+              </div>
             </div>
           </div>
 
@@ -69,7 +75,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <div class="form-group">
-                <label class="required">COE</label>
+                <label>COE</label>
 
                 <!-- COE -->
                 <%- include ("../partials/coe") %>

@@ -16,14 +16,14 @@
                 <div class="row data-row">
                     <div class="col-md-6 mb-3">
                         <label class="required">University/College Name</label>
-                        <input type="text" name="collegeName" class="form-control">
+                        <input type="text" name="collegeName" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid university/college name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">Name of the program</label>
-                        <input type="text" name="programName" class="form-control">
+                        <input type="text" name="programName" class="form-control" required>
                         <div class="invalid-feedback">
                             Valid program name is required.
                         </div>
@@ -33,17 +33,23 @@
                     <div class="col-md-6 mb-3">
 
                         <label class="required">Start Date</label>
-                        <input type="date" name="startDate" class="form-control" onchange="setDate()">
+                        <input type="date" name="startDate" class="form-control" onchange="setDate()" required>
+                        <div class="invalid-feedback">
+                            Valid start date is required.
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="required">End Date</label>
-                        <input type="date" class="form-control" name="endDate">
+                        <input type="date" class="form-control" name="endDate" required>
+                        <div class="invalid-feedback">
+                            Valid end date is required.
+                        </div>
 
                     </div>
                 </div>
                 <div class="row data-row">
                     <div class="col-md-12 mb-3">
-                        <label class="required">COE</label>
+                        <label>COE</label>
                         <!-- COE -->
                         <%- include ("../partials/coe") %>
 
