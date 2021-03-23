@@ -74,7 +74,7 @@ let seeddb = async () => {
   });
 
   sql =
-    "Create Table stu_mooc(usn varchar(255), studentName varchar(255), startDate Date, endDate Date, description varchar(225), courseName varchar(225), boolExam varchar(225), department varchar(255),COE varchar(255));";
+    "Create Table stu_mooc(usn varchar(255), agency varchar(255), startDate Date, endDate Date, courseName varchar(225), boolExam varchar(225), dept varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("MOOC Table created successfully");
