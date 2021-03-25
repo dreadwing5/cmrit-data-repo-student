@@ -74,7 +74,7 @@ let seeddb = async () => {
   });
 
   sql =
-    "Create Table stu_mooc(usn varchar(255), agency varchar(255), startDate Date, endDate Date, courseName varchar(225), boolExam varchar(225), dept varchar(255), coe varchar(255), description varchar(255), filterDate date);";
+    "Create Table stu_mooc(usn varchar(255), agency varchar(255), startDate Date, endDate Date, courseName varchar(225), boolExam varchar(225), department varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("MOOC Table created successfully");
@@ -92,13 +92,6 @@ let seeddb = async () => {
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Journal and Conference Publications Table created successfully");
-  });
-
-  sql =
-    "Create Table stu_exhangeProgram(usn varchar(255), studentName varchar(255),description varchar(225), startDate Date, endDate Date, department varchar(255),COE varchar(255));";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    console.log("Student Exchange Program Table created successfully");
   });
 
   sql =
@@ -122,7 +115,7 @@ let seeddb = async () => {
     console.log("Student Parents' Meeting Table created successfully");
   });
 
-  sql = "Create Table stu_bridgeCourses(dept varchar(255), semester varchar(255), subName varchar(255), subCode varchar(255), topic varchar(255), sessionDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql = "Create Table stu_bridgeCourses(department varchar(255), semester varchar(255), subName varchar(255), subCode varchar(255), topic varchar(255), sessionDate date, coe varchar(255), description varchar(255), filterDate date);"
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Bridge Courses Table created successfully");
@@ -146,19 +139,19 @@ let seeddb = async () => {
     console.log("Exchange Program Table created successfully");
   });
 
-  sql = "Create Table stu_alumniData(stuName varchar(255), usn varchar(255), email varchar(255), mobNumber varchar(255), companyName varchar(255), companyEmail varchar(255), joining date, passing date, place varchar(255), location varchar(255), dept varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql = "Create Table stu_alumniData(stuName varchar(255), usn varchar(255), email varchar(255), mobNumber varchar(255), companyName varchar(255), companyEmail varchar(255), joining date, passing date, place varchar(255), location varchar(255), department varchar(255), coe varchar(255), description varchar(255), filterDate date);"
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Alumni Data Table created successfully");
   });
 
-  sql = "Create Table stu_higherStudies(location varchar(255), name varchar(255), universityName varchar(255), universityAddress varchar(255), admissionYear varchar(255), course varchar(255), specialization varchar(255), gradYear varchar(255), dept varchar(255), examQualified varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql = "Create Table stu_higherStudies(location varchar(255), name varchar(255), universityName varchar(255), universityAddress varchar(255), admissionYear varchar(255), course varchar(255), specialization varchar(255), gradYear varchar(255), department varchar(255), examQualified varchar(255), coe varchar(255), description varchar(255), filterDate date);"
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Higher Studies Table created successfully");
   });
 
-  sql = "Create Table stu_results(dept varchar(255), semester varchar(255), resultDate date, academicYear varchar(255), section char(1), avgCGPA float, passPercent float, nFail int, nAppear int, nPass int, coe varchar(255), description varchar(255), filterDate date);"
+  sql = "Create Table stu_results(department varchar(255), semester varchar(255), resultDate date, academicYear varchar(255), section char(1), avgCGPA float, passPercent float, nFail int, nAppear int, nPass int, coe varchar(255), description varchar(255), filterDate date);"
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Results(After Reval) Table created successfully");
