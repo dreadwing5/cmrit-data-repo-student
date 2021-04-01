@@ -37,13 +37,14 @@
             <div>
                 <% event.forEach((event,j)=>{ %>
                     <div class="mb-5">
+                        <% if(data[j].length !== 0) { %>
                         <h5 class="title">
-
                             <p>
                                 <%=event%> Report
                             </p>
                             
                         </h5>
+                        <% } %>
                         <div>
                                 <%let i=1%>
                                 <% data[j].forEach((obj)=>{ %>
