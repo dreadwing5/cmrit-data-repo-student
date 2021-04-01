@@ -39,8 +39,13 @@
                     <div class="mb-5">
                         <% if(data[j].length !== 0) { %>
                         <h5 class="title">
-                            <p>
-                                <%=event%> Report
+                            <p>                       
+                                <% if(event.indexOf('_') === -1){ %>
+                                    <%= event %> Report
+                                <% } else { %>
+                                    <% const index = event.indexOf('_'); %>
+                                    <%= event.substring(0, index) + ' ' + event.charAt(index + 1).toUpperCase() + event.substring(index + 2) %> Report
+                                <% } %>
                             </p>
                             
                         </h5>
