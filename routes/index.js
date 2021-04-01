@@ -8,40 +8,8 @@ const {
 const multer = require("multer");
 
 router.get("/", ensureAuthenticated, (req, res) => {
-  res.render("home", {
-    Username: req.user.name,
-  });
+  res.redirect("/students/awards");
 });
-
-//Faculty Routes
-
-router.get("/faculty/eventsAttended", ensureAuthenticated, (req, res) => {
-  res.render("fields/fac_eventsAttended", {
-    title: "Events",
-    module: "Faculty",
-    Username: req.user.name,
-  });
-});
-
-// Faculty Club Activities Page
-router.get("/faculty/clubActivities", ensureAuthenticated, (req, res) => {
-  res.render("fields/fac_clubActivities", {
-    title: "Club",
-    module: "Faculty",
-    Username: req.user.name,
-  });
-});
-
-// Faculty Awards Page
-router.get("/faculty/awards", ensureAuthenticated, (req, res) => {
-  res.render("fields/fac_awards", {
-    title: "Awards",
-    module: "Faculty",
-    Username: req.user.name,
-  });
-});
-
-//Student Routes
 
 router.get("/students/eventsAttended", ensureAuthenticated, (req, res) => {
   res.render("fields/stu_eventsAttended", {
