@@ -5,7 +5,7 @@
 
         <section id="form">
 
-            <form action="/search" method="post">
+            <form action="/search" method="post" class="needs-validation">
                 <!-- <form actionid="studentReport" class="needs-validation" novalidate=""> -->
                 <div class="container-fluid">
                     <h4 class="mb-3 title">Student Report</h4>
@@ -13,7 +13,7 @@
 
                         <div class="col-md-12 mb-3">
                             <label>Event</label>
-                            <select class="custom-select d-block w-100" name="event">
+                            <select class="custom-select d-block w-100" name="event" required>
                                 <option value="">Choose...</option>
                                 <option value="all">All</option>
                                 <option value="awards">Awards & Achievements</option>
@@ -22,7 +22,6 @@
                                 <option value="book_Publication">Book Publication</option>
                                 <option value="entrepreneurship">Entrepreneurship</option>
                                 <option value="bridge_Courses">Bridge Courses</option>
-                                <option value="events_Attended">Events Attended</option>
                                 <option value="exchange_Program">Exchange Program</option>
                                 <option value="higher_Studies">Higher Studies</option>
                                 <option value="idea_Repository">Idea Repository</option>
@@ -34,31 +33,43 @@
                                 <option value="served_As">Served As</option>
                                 <option value="journal_Publications">Journal & Conference Publications</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Valid option is required.
+                            </div>
                         </div>
                     </div>
                     <div class="row data-row">
                         <div class="col-md-6 mb-3">
                             <label for="fromDate">From Date</label>
-                            <input type="date" name="fromDate" class="form-control">
+                            <input type="date" name="fromDate" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Valid date is required.
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="toDate">To Date</label>
-                            <input type="date" name="toDate" class="form-control">
+                            <input type="date" name="toDate" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Valid date is required.
+                            </div>
                         </div>
                     </div>
                     <div class="row data-row">
                         <div class="col-md-6 mb-3">
                             <label for="details">Details Required</label>
-                            <select class="custom-select d-block w-100" name="details">
+                            <select class="custom-select d-block w-100" name="details" required>
                                 <option value="">Choose...</option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Valid details required.
+                            </div>
 
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="dep">Departments</label>
-                            <select class="custom-select d-block w-100" name="dep">
+                            <select class="custom-select d-block w-100" name="dep" required>
                                 <option value="">Choose...</option>
                                 <option value="all">All</option>
                                 <option value="cse">CSE</option>
@@ -71,12 +82,15 @@
                                 <option value="mca">MCA</option>
                                 <option value="ise">BASIC SCIENCE</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Valid department is required.
+                            </div>
                         </div>
                     </div>
                     <div class="row data-row">
                         <div class="col-md-12 mb-3">
                             <label for="COE">COE</label>
-                            <select class="custom-select d-block w-100" name="COE">
+                            <select class="custom-select d-block w-100" name="COE" required>
                                 <option value="">Choose...</option>
                                 <option value="All">All</option>
                                 <option value="Additive Manufacturing">Additive Manufacturing</option>
@@ -97,6 +111,9 @@
                                 <option value="Embedded System">Embedded system</option>
                                 <option value="Modeling of Dynamic Systems">Modeling of dynamic systems</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Valid option is required.
+                            </div>
                         </div>
 
                     </div>
