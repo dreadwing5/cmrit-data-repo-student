@@ -138,7 +138,9 @@ router.post("/search", (req, res) => {
     }
 
     //Check for Details req
-
+    module = [module];
+    eventName = [eventName];
+    data = [data];
     if (detailsReq) {
       res.render("report/full_report", {
         module: module,
