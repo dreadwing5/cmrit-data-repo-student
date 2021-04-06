@@ -147,6 +147,13 @@ router.get("/students/mooc", ensureAuthenticated, (req, res) => {
   });
 });
 
+router.get("/students/academiaAttended", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_academiaAttended", {
+    title: "Academia/Industry Connect Activities Attended",
+    module: "Student",
+    Username: req.user.name
+  });
+});
 
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({

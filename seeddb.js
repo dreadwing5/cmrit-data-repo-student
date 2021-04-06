@@ -157,6 +157,12 @@ let seeddb = async () => {
     console.log("Results(After Reval) Table created successfully");
   });
 
+  sql = "Create Table stu_industry_connect(activityType varchar(255), topic varchar(255), attendedAt varchar(255), activityName varchar(255), objectives varchar(255), benefits varchar(255), startDate date, endDate date, activityLevel varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Academia/Industry Connect Activities Attended Table created successfully");
+  });
+
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
