@@ -169,6 +169,12 @@ let seeddb = async () => {
     console.log("Awards & Achievements NSS/NCC Table created successfully");
   });
 
+  sql = "Create Table stu_mentoring(usn varchar(255), name varchar(255), contact varchar(255), email varchar(255), parentName varchar(255), parentContact varchar(255), parentEmail varchar(255), marksIAT1 int, marksIAT2 int, marksIAT3 int, attendanceIAT1 varchar(255), attendanceIAT2 varchar(255), attendanceIAT3 varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Mentoring Table created successfully");
+  });
+
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
