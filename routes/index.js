@@ -155,6 +155,14 @@ router.get("/students/academiaAttended", ensureAuthenticated, (req, res) => {
   });
 });
 
+router.get("/students/awardsNSS", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_awardsNSS", {
+    title: "Awards & Achievements NSS/NCC",
+    module: "Student",
+    Username: req.user.name
+  });
+});
+
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({
   destination: "./public/uploads",

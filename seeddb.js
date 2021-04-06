@@ -163,6 +163,12 @@ let seeddb = async () => {
     console.log("Academia/Industry Connect Activities Attended Table created successfully");
   });
 
+  sql = "Create Table stu_awards_nss(grp varchar(255), result varchar(255), awardedDate date, level varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Awards & Achievements NSS/NCC Table created successfully");
+  });
+
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;
