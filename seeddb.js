@@ -175,6 +175,12 @@ let seeddb = async () => {
     console.log("Mentoring Table created successfully");
   });
 
+  sql = "Create Table stu_patents(rcid varchar(255), title varchar(255), agencyName varchar(255), subNumber varchar(255), grantAmount varchar(255), earnings varchar(255), patentNumber varchar(255), benefits varchar(255), patentLevel varchar(255), commercialized varchar(255), status varchar(255), specification varchar(255), grantDate date, subDate date, coe varchar(255), description varchar(255), filterDate date);"
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log("Patents Table created successfully");
+  });
+
   sql = "Create Table dept_list(depname varchar(255));";
   db.query(sql, (err, result) => {
     if (err) throw err;

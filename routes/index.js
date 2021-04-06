@@ -171,6 +171,14 @@ router.get("/students/mentoring", ensureAuthenticated, (req, res) => {
   });
 });
 
+router.get("/students/patents", ensureAuthenticated, (req, res) => {
+  res.render("fields/stu_patents", {
+    title: "Patents",
+    module: "Student",
+    Username: req.user.name
+  });
+});
+
 /* //For later use, where we need to make our own api for image upload
 const storage = multer.diskStorage({
   destination: "./public/uploads",
