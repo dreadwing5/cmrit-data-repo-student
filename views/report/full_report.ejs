@@ -26,7 +26,7 @@
         <div class="row data-row">
             <div class="col-md-8 mb-3">
                 <h4 class="mb-3 title">
-                        <%=module%> Report
+                    <%=module%> Report
                 </h4>
             </div>
             <div class="col-md-4 mb-3 report">
@@ -37,123 +37,141 @@
             <div>
                 <% event.forEach((event,j)=>{ %>
                     <div class="mb-5">
-                        <% if(data[j].length !== 0) { %>
-                        <h5 class="title">
-                            <p>                       
-                                <% if(event.indexOf('_') === -1){ %>
-                                    <%= event %> Report
-                                <% } else { %>
-                                    <% const index = event.indexOf('_'); %>
-                                    <%= event.substring(0, index) + ' ' + event.charAt(index + 1).toUpperCase() + event.substring(index + 2) %> Report
-                                <% } %>
-                            </p>
-                            
-                        </h5>
-                        <% } %>
-                        <div>
-                                <%let i=1%>
-                                <% data[j].forEach((obj)=>{ %>
-                    
-                                    <div class="row">
-                    
-                                        <table id="table-data" class="table" border="1">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <% Object.keys(data[j][0]).forEach(key=> { %>
-                                                        <%if(key==='description' ){%>
-                                                            <th style="display:none;">
-                                                            </th>
-                                                            <%}else{%>
-                                                                <th scope="col">
-                                                                    <%= key.charAt(0).toUpperCase() +
-                                                                        key.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2' );%>
+                        <% if(data[j].length !==0) { %>
+                            <h5 class="title">
+                                <p>
+                                    <% if(event.indexOf('_')===-1){ %>
+                                        <%= event %> Report
+                                            <% } else { %>
+                                                <% const index=event.indexOf('_'); %>
+                                                    <%= event.substring(0, index) + ' ' + event.charAt(index +
+                                                        1).toUpperCase() + event.substring(index + 2) %> Report
+                                                        <% } %>
+                                </p>
+
+                            </h5>
+                            <% } %>
+                                <div>
+                                    <%let i=1%>
+                                        <% data[j].forEach((obj)=>{ %>
+
+                                            <div class="row">
+
+                                                <table id="table-data" class="table" border="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <% Object.keys(data[j][0]).forEach(key=> { %>
+                                                                <%if(key==='description' ){%>
+                                                                    <th style="display:none;">
+                                                                    </th>
+                                                                    <%}else{%>
+                                                                        <th scope="col">
+                                                                            <%= key.charAt(0).toUpperCase() +
+                                                                                key.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2'
+                                                                                );%>
+                                                                        </th>
+                                                                        <%}%>
+                                                                            <% }) %>
+                                                                                <th scope="col">Edit</th>
+                                                                                <th scope="col">Delete</th>
+                                                        </tr>
+
+                                                    </thead>
+
+                                                    <%const object=JSON.parse(JSON.stringify(obj))%>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%=i++%>
                                                                 </th>
-                                                                <%}%>
-                                                                    <% }) %>
-                                                </tr>
-                    
-                                            </thead>
-                    
-                                            <%const object=JSON.parse(JSON.stringify(obj))%>
-                    
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            <%=i++%>
-                                                        </th>
-                                                        <%Object.entries(object).forEach(([key,value])=> { %>
-                                                            <%if(key==='description'){%>
-                                                                <td style="display:none;">
-                                                                </td>
-                    
-                                                                <%}else{%>
-                    
-                                                                    <%if(key==='date'|| key==='fromDate' || key==='startDate'
-                                                                        ||key==='endDate' || key === 'meetingDate' || key === 'grantDate' || key === 'submissionDate') {%>
-                                                                        <td>
-                                                                            <%=formatDate(value)%>
+                                                                <%Object.entries(object).forEach(([key,value])=> { %>
+                                                                    <%if(key==='description'){%>
+                                                                        <td style="display:none;">
                                                                         </td>
-                                                                        <% function formatDate(date) { let d=new Date(date), month='' +
-                                                                            (d.getMonth() + 1), day='' + d.getDate(), year=d.getFullYear();
-                                                                            if (month.length < 2) month='0' + month; if (day.length < 2)
-                                                                            day='0' + day; return [day, month, year].join('/'); } %>
-                                                                            <%} else {%>
-                    
+
+                                                                        <%}else{%>
+
+                                                                            <%if(key==='date'|| key==='fromDate' ||
+                                                                                key==='startDate' ||key==='endDate' ||
+                                                                                key==='meetingDate' || key==='grantDate'
+                                                                                || key==='submissionDate' ) {%>
                                                                                 <td>
-                    
-                    
-                                                                                    <% if(key==='description' ){%>
-                                                                                        <div>
-                                                                                            <%-value%>
-                    
-                                                                                        </div>
-                    
-                    
-                                                                                        <% } else {%>
-                    
-                                                                                            <%= value %>
-                    
-                                                                                                <%}%>
-                                                                                                    <%}%>
+                                                                                    <%=formatDate(value)%>
                                                                                 </td>
-                                                                                <%}%>
-                    
-                                                                                    <% }) %>
-                    
-                                                    </tr>
-                    
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                    
-                                                        <%if(object.description!=='null') {%>
-                                                            <td colspan="100">
-                                                                <%-object.description%>
-                                                            </td>
-                                                            <%}%>
-                                                    </tr>
-                    
-                    
-                                                </tfoot>
-                    
-                    
-                                        </table>
-                                    </div>
-                    
-                    
-                    
-                                    <% }) %>
-                        </div>
+                                                                                <% function formatDate(date) { let d=new
+                                                                                    Date(date), month='' + (d.getMonth()
+                                                                                    + 1), day='' + d.getDate(),
+                                                                                    year=d.getFullYear(); if
+                                                                                    (month.length < 2) month='0' +
+                                                                                    month; if (day.length < 2) day='0' +
+                                                                                    day; return [day, month,
+                                                                                    year].join('/'); } %>
+                                                                                    <%} else {%>
+
+                                                                                        <td>
+
+
+                                                                                            <% if(key==='description'
+                                                                                                ){%>
+                                                                                                <div>
+                                                                                                    <%-value%>
+
+                                                                                                </div>
+
+
+                                                                                                <% } else {%>
+
+                                                                                                    <%= value %>
+
+                                                                                                        <%}%>
+                                                                                                            <%}%>
+                                                                                        </td>
+                                                                                        <%}%>
+
+                                                                                            <% }) %>
+                                                                                                <td>
+                                                                                                    <button
+                                                                                                        class="btn btn-primary">Edit</button>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <button
+                                                                                                        class="btn btn-danger">Delete</button>
+                                                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+
+                                                                <%if(object.description!=='null') {%>
+                                                                    <td colspan="100">
+                                                                        <%-object.description%>
+                                                                    </td>
+                                                                    <%}%>
+                                                            </tr>
+
+
+                                                        </tfoot>
+
+
+                                                </table>
+                                            </div>
+
+
+
+                                            <% }) %>
+                                </div>
                     </div>
-               
 
-                <% }) %>
 
-              
+                    <% }) %>
+
+
             </div>
         </div>
-       
+
     </div>
 
 </body>
