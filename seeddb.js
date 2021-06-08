@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 let seeddb = async () => {
   let db = mysql.createConnection({
@@ -8,7 +8,7 @@ let seeddb = async () => {
   });
 
   let promise = new Promise((resolve, reject) => {
-    let sql = "Create Database data_repository";
+    let sql = "Create Database data_repository_student";
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log("DataBase Created Successfully");
@@ -22,7 +22,7 @@ let seeddb = async () => {
       host: "localhost",
       user: "root",
       password: "",
-      database: "data_repository",
+      database: "data_repository_student",
     });
     resolve(db);
   });
@@ -98,7 +98,9 @@ let seeddb = async () => {
     "Create Table journal_publications(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), name varchar(255), rcid varchar(255), pubName varchar(255), title varchar(255), isbn varchar(255), issn varchar(255), edition varchar(255), doi varchar(255), type varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Journal and Conference Publications Table created successfully");
+    console.log(
+      "Journal and Conference Publications Table created successfully"
+    );
   });
 
   sql =
@@ -122,73 +124,87 @@ let seeddb = async () => {
     console.log("Student Parents' Meeting Table created successfully");
   });
 
-  sql = "Create Table bridge_courses(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), department varchar(255), semester varchar(255), subName varchar(255), subCode varchar(255), topic varchar(255), sessionDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table bridge_courses(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), department varchar(255), semester varchar(255), subName varchar(255), subCode varchar(255), topic varchar(255), sessionDate date, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Bridge Courses Table created successfully");
   });
 
-  sql = "Create Table idea_repository(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), ideaDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table idea_repository(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), ideaDate date, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Idea Repository Table created successfully");
   });
 
-  sql = "Create Table internship_cell(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), title varchar(255), companyName varchar(255), semester varchar(255), stipend varchar(255), duration varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table internship_cell(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), title varchar(255), companyName varchar(255), semester varchar(255), stipend varchar(255), duration varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Internship Cell Table created successfully");
   });
 
-  sql = "Create Table exchange_program(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), collegeName varchar(255), programName varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table exchange_program(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), collegeName varchar(255), programName varchar(255), startDate date, endDate date, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Exchange Program Table created successfully");
   });
 
-  sql = "Create Table alumni_data(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), stuName varchar(255), usn varchar(255), email varchar(255), mobNumber varchar(255), companyName varchar(255), companyEmail varchar(255), joining date, passing date, place varchar(255), location varchar(255), department varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table alumni_data(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), stuName varchar(255), usn varchar(255), email varchar(255), mobNumber varchar(255), companyName varchar(255), companyEmail varchar(255), joining date, passing date, place varchar(255), location varchar(255), department varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Alumni Data Table created successfully");
   });
 
-  sql = "Create Table higher_studies(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), location varchar(255), name varchar(255), universityName varchar(255), universityAddress varchar(255), admissionYear varchar(255), course varchar(255), specialization varchar(255), gradYear varchar(255), department varchar(255), examQualified varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table higher_studies(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), location varchar(255), name varchar(255), universityName varchar(255), universityAddress varchar(255), admissionYear varchar(255), course varchar(255), specialization varchar(255), gradYear varchar(255), department varchar(255), examQualified varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Higher Studies Table created successfully");
   });
 
-  sql = "Create Table results(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), department varchar(255), semester varchar(255), resultDate date, academicYear varchar(255), section char(1), avgCGPA float, passPercent float, nFail int, nAppear int, nPass int, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table results(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), department varchar(255), semester varchar(255), resultDate date, academicYear varchar(255), section char(1), avgCGPA float, passPercent float, nFail int, nAppear int, nPass int, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Results(After Reval) Table created successfully");
   });
 
-  sql = "Create Table industry_connect(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), activityType varchar(255), topic varchar(255), attendedAt varchar(255), activityName varchar(255), objectives varchar(255), benefits varchar(255), startDate date, endDate date, activityLevel varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table industry_connect(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), activityType varchar(255), topic varchar(255), attendedAt varchar(255), activityName varchar(255), objectives varchar(255), benefits varchar(255), startDate date, endDate date, activityLevel varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log("Academia/Industry Connect Activities Attended Table created successfully");
+    console.log(
+      "Academia/Industry Connect Activities Attended Table created successfully"
+    );
   });
 
-  sql = "Create Table awards_nss(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), grp varchar(255), result varchar(255), awardedDate date, level varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table awards_nss(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), grp varchar(255), result varchar(255), awardedDate date, level varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Awards & Achievements NSS/NCC Table created successfully");
   });
 
-  sql = "Create Table mentoring(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), usn varchar(255), name varchar(255), contact varchar(255), email varchar(255), parentName varchar(255), parentContact varchar(255), parentEmail varchar(255), marksIAT1 int, marksIAT2 int, marksIAT3 int, attendanceIAT1 varchar(255), attendanceIAT2 varchar(255), attendanceIAT3 varchar(255), coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table mentoring(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), usn varchar(255), name varchar(255), contact varchar(255), email varchar(255), parentName varchar(255), parentContact varchar(255), parentEmail varchar(255), marksIAT1 int, marksIAT2 int, marksIAT3 int, attendanceIAT1 varchar(255), attendanceIAT2 varchar(255), attendanceIAT3 varchar(255), coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Mentoring Table created successfully");
   });
 
-  sql = "Create Table patents(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), rcid varchar(255), title varchar(255), agencyName varchar(255), submissionNumber varchar(255), grantAmount varchar(255), earnings varchar(255), patentNumber varchar(255), benefits varchar(255), patentLevel varchar(255), commercialized varchar(255), status varchar(255), specification varchar(255), grantDate date, submissionDate date, coe varchar(255), description varchar(255), filterDate date);"
+  sql =
+    "Create Table patents(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), rcid varchar(255), title varchar(255), agencyName varchar(255), submissionNumber varchar(255), grantAmount varchar(255), earnings varchar(255), patentNumber varchar(255), benefits varchar(255), patentLevel varchar(255), commercialized varchar(255), status varchar(255), specification varchar(255), grantDate date, submissionDate date, coe varchar(255), description varchar(255), filterDate date);";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Patents Table created successfully");
   });
 
-  sql = "Create Table dept_list(id int Auto_increment , depname varchar(255), PRIMARY KEY(id));";
+  sql =
+    "Create Table dept_list(id int Auto_increment , depname varchar(255), PRIMARY KEY(id));";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("Department Table Created successfully");
