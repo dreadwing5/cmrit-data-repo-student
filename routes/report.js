@@ -1,160 +1,170 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/DBConnection");
+const { snakeCase, startCase } = require("lodash");
+
 const {
   ensureAuthenticated,
   forwardAuthenticated,
 } = require("../configs/auth");
 
-//Route for Student Report Generation
-router.get("/students/search", ensureAuthenticated, (req, res) => {
-  res.render("report/stu_search", {
-    module: "Student",
-    title: "",
-    Username: req.user.name,
-  });
-});
+const formatDate = (date, format) => {
+  let d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  return format === "dd-mm-yyyy"
+    ? [day, month, year].join("-")
+    : [year, month, day].join("-");
+};
 
-//Route for Faculty FacReport Generation
-router.get("/faculty/search", ensureAuthenticated, (req, res) => {
-  res.render("report/fac_search", {
-    title: "",
-    module: "Faculty",
-    Username: req.user.name,
-  });
-});
+function handleRoute(req, res) {
+  let { event, fromDate, toDate, dept, coe, isDescriptionRequired } = req.body;
+  console.log(req.body);
+  let tables = [];
+
+  const filterData = (res, data) => {
+    //Filter the data based on query
+
+    for (let key in res) {
+      if (key.includes("date") || key.includes("Date")) {
+        res[key] = formatDate(res[key], "dd-mm-yyyy"); //Format data in the form dd-mm-yyyy
+      }
+    }
+
+    if (res.department == null) {
+      res.department = "NULL";
+    }
+
+    delete res.filterDate; //Remove filter date from the result
+
+    /* This if condition checks if the department is null or not, basically it's going to filter the result based on department and coe */
+
+    if (
+      (res.department == "NULL" || dept == "ALL" || res.department == dept) &&
+      (coe == "all" || coe == res.coe)
+    ) {
+      data.push(res);
+    }
+  };
+
+  const getAllTables = () => {
+    let sql = `SELECT table_name FROM information_schema.tables WHERE table_schema = "data_repository"`;
+
+    connection.query(sql, (err, result) => {
+      if (err) console.log(err);
+      result.forEach(({ TABLE_NAME }) => {
+        let table = TABLE_NAME;
+        if (!(table === "student" || table === "coe" || table === "club_name"))
+          tables.push(table);
+      }); //filter out table
+      let data = [];
+      let eventName = [];
+      tables.forEach((table, i) => {
+        eventName.push(startCase(table).toUpperCase());
+        //For each table we are going to fetch the table data and push it into data array
+        let sql = `Select * from ${table}`;
+        connection.query(sql, (err, result) => {
+          if (err) console.log(err);
+          let dataTemp = [];
+          result.forEach((res) => {
+            filterData(res, dataTemp);
+          });
+          data.push(dataTemp);
+          if (i == tables.length - 1) {
+            res.render("report/report", {
+              data: data,
+              event: eventName,
+              isDescriptionRequired,
+            });
+          }
+        });
+      });
+    });
+  };
+
+  const getTable = () => {
+    let data = [];
+    let sql = `Select * from ${event} Where (filterDate BETWEEN ? AND ?)`; //Search for all the data
+    connection.query(sql, [fromDate, toDate], (err, result, fields) => {
+      if (err) throw err;
+
+      //Filter the data based on query
+      result.forEach((res) => {
+        filterData(res, data);
+      });
+      if (data.length == 0) {
+        res.json({
+          error: "the data is empty based on your search results",
+        });
+        return;
+      }
+
+      //Check for Details req
+
+      // module = [module];
+
+      /* This code is only there to support all filed in the report page,since we are going to create array of array of object */
+
+      event = [startCase(event).toUpperCase()];
+      data = [data];
+
+      res.render("report/report", {
+        data: data,
+        event: event,
+        isDescriptionRequired,
+      });
+    });
+  };
+
+  event === "all" ? getAllTables() : getTable();
+}
 
 //Filter Data and Print for both Faculty & Student
 router.post("/search", (req, res) => {
-  let module = req.body.moduleName;
-  let event = "stu_" + req.body.event;
-  let fromDate = req.body.fromDate;
-  let toDate = req.body.toDate;
-  let dept = req.body.dep.toUpperCase();
-  let COE = req.body.COE;
-  let eventName = req.body.event;
-  eventName =
-    eventName.charAt(0).toUpperCase() +
-    eventName.slice(1).replace(/([a-z])([A-Z])/g, "$1 $2");
-  //All should  look for all the table in database
+  handleRoute(req, res); //Handle search route
+});
 
-  if (req.body.event == "all") {
-    let sql = `select table_name from information_schema.tables where table_schema="data_repository"`;
-    connection.query(sql, (err, result, fields) => {
-      if (err) throw err;
-      let tables = [];
-      result.forEach(res => {
-        let table = res.table_name;
-        let cn = 0;
-        for (let i = 0; i < table.length; i++) {
-          if (table[i] == '_')
-            cn++;
-        }
+//@route    GET api/edit?
+//@desc     Edit Route
+//@access   Public
 
-        if (table[0] == 's' && cn > 0) {
-          tables.push(table);
-        }
-      })
-      let data = []
-      eventName = []
-      tables.forEach((table, i) => {
-        eventName.push(
-          table.charAt(4).toUpperCase() +
-          table.slice(5).replace(/([a-z])([A-Z])/g, "$1 $2")
-        )
-        let sql = `Select * from ${table}`;
-        connection.query(sql, (err, result, fields) => {
-          if (err) 
-            throw err;
-          let datatemp = [];
-          let detailsReq = true;
-          result.forEach((res) => {
-            console.log(res);
-            if (res.department == null) {
-              res.department = "NULL";
-            }
-            if (req.body.details == "false") {
-              delete res.description;
-              detailsReq = false;
-            }
-            delete res.filterDate;
-            if (
-              (res.department == "NULL" || dept == "ALL" || res.department == dept) &&
-              (COE == "All" || COE == res.COE)
-            ) {
-              datatemp.push(res);
-            }
-          });
-          data.push(datatemp)
-          // console.log(data);
-          if (i === tables.length - 1) {
+router.get("/edit?", (req, res) => {
+  let { name, id } = req.query;
+  name = snakeCase(name);
 
-            // console.log(eventName)
-            if (detailsReq) {
-              res.render("report/full_report", {
-                module: module,
-                data: data,
-                event: eventName,
-              });
-            } else {
-              res.render("report/report_without_desc", {
-                module: module,
-                data: data,
-                event: eventName,
-              });
-            }
-          }
-        })
-      })
-    })
-    return;
-  }
-  let sql = `Select * from ${event} Where (filterDate BETWEEN ? AND ?)`;
-  connection.query(sql, [fromDate, toDate], (err, result, fields) => {
-    if (err) throw err;
-    let data = [];
-    let detailsReq = true;
-    result.forEach((res, i) => {
-      if (res.department == null) {
-        res.department = "NULL";
-      }
-      if (req.body.details == "false") {
-        delete res.description;
-        detailsReq = false;
-      }
-      delete res.filterDate;
-      if (
-        (res.department == "NULL" || dept == "ALL" || res.department == dept) &&
-        (COE == "All" || COE == res.COE)
-      ) {
-        data.push(res);
-      }
-    });
-    if (data.length == 0) {
-      res.json({
-        error: "the data is empty based on your search results",
-      });
-      return;
-    }
-
-    //Check for Details req
-    module = [module];
-    eventName = [eventName];
-    data = [data];
-    if (detailsReq) {
-      res.render("report/full_report", {
-        module: module,
-        data: data,
-        event: eventName,
+  let sql = `Select * from ${name} Where id=${id}`;
+  connection.query(sql, (error, result, fields) => {
+    if (error) {
+      console.error(error);
+      res.send({
+        code: 400,
+        failed: "error ocurred",
       });
     } else {
-      res.render("report/report_without_desc", {
-        module: module,
-        data: data,
-        event: eventName,
+      result.forEach((res, i) => {
+        for (let key in res) {
+          if (key.includes("date") || key.includes("Date")) {
+            res[key] = formatDate(res[key], "yyyy-mm-dd"); //Format the date in 2020-02-12 so that html can understand the date format and parse it
+          }
+        }
+        delete res.filterDate; //We may need filterDate ifwe don't want to modify the search parameter
       });
     }
+    const data = JSON.parse(JSON.stringify(result[0]));
+    // console.log("Data to Be Edited", data);
+    res.render(`fields/${name}`, {
+      title: startCase(name),
+      isInsertMode: false,
+      Username: "test",
+      data: data,
+    });
   });
 });
 
 module.exports = router;
+
+
+
