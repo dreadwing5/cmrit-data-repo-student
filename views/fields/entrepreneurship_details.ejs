@@ -91,19 +91,7 @@
             <div class="col-md-6 mb-3">
               <div class="form-group">
                 <label class="required">In association with</label>
-                <select name="department" class="custom-select d-block w-100" required>
-                  <option value="">Choose...</option>
-                  <option>CSE</option>
-                  <option>ISE</option>
-                  <option>CIVIL</option>
-                  <option>MECH</option>
-                  <option>ECE</option>
-                  <option>EEE</option>
-                  <option>BS</option>
-                  <option>MBA</option>
-                  <option>MCA</option>
-                  <option>TCE</option>
-                </select>
+                <%- include ("../partials/departments") %>
                 <div class="invalid-feedback">
                   Please select a valid department.
                 </div>
