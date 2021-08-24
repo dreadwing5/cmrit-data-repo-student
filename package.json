@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js -e ejs,js --ignore 'public/'",
-    "dev": "webpack --watch --config webpack.dev.config.js"
+    "dev": "webpack --watch --config webpack.dev.config.js",
+    "prod": "webpack  --config webpack.production.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "express-session": "^1.17.1",
     "gsap": "^3.6.1",
     "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "multer": "^1.4.2",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
@@ -37,11 +39,12 @@
   },
   "devDependencies": {
     "connect-livereload": "^0.6.1",
-    "css-loader": "^5.2.4",
+    "css-loader": "^5.2.7",
     "livereload": "^0.9.3",
     "nodemon": "^2.0.7",
     "style-loader": "^2.0.0",
     "webpack": "^5.36.2",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.6.0",
     "webpack-dev-middleware": "^3.7.3",
     "webpack-dev-server": "^3.11.2"

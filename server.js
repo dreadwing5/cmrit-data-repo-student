@@ -13,13 +13,13 @@ const publicDirectory = path.join(__dirname, "public");
 app.use(express.static(publicDirectory));
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  console.log("Devlopment Build");
+  console.log("Development Build");
 
   const liveReloadServer = livereload.createServer();
 
   liveReloadServer.watch([publicDirectory + "/css", __dirname + "dist"]);
 
-  // ping browser on Express boot, once browser has reconnected and handshaken
+  // ping browser on Express boot, once browser has reconnected and handshaker
   liveReloadServer.server.once("connection", () => {
     setTimeout(() => {
       liveReloadServer.refresh("/");

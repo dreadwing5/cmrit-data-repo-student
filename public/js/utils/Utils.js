@@ -1,4 +1,4 @@
-import { trim, camelCase, startCase } from "lodash";
+import { trim, camelCase, startCase } from "lodash-es";
 import Quill from "quill";
 import axios from "axios";
 
@@ -168,7 +168,7 @@ admin_table__data?.addEventListener("click", (e) => {
   }
 });
 
-//Handle dropdwon menu here
+//Handle dropdown menu here
 const select = document.getElementById("select");
 
 select?.addEventListener("click", sendGetRequest);

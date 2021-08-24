@@ -1,4 +1,6 @@
 const path = require("path");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   mode: "development",
@@ -15,7 +17,6 @@ module.exports = {
       "./public/js/utils/Textbox.js",
       "./public/js/utils/Date.js",
       "./public/js/utils/Sidebar.js",
-      "./public/js/utils/Error.js",
     ],
   },
   output: {
@@ -32,4 +33,5 @@ module.exports = {
       },
     ],
   },
+  plugins: [new BundleAnalyzerPlugin()],
 };
