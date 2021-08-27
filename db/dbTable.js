@@ -1,7 +1,3 @@
-exports.CREATE_FACULTY_TABLE = `
-CREATE TABLE IF NOT EXISTS faculty(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), password varchar(255), name varchar(255), department varchar(255), mailId varchar(255), phoneNumber varchar(255), joiningDate Date, role varchar(255))
-`;
-
 exports.CREATE_STUDENT_TABLE = `CREATE TABLE IF NOT EXISTS student(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), usn varchar(255), password varchar(255), name varchar(255), department varchar(255), mailId varchar(255), phoneNumber varchar(255))`;
 
 exports.CREATE_AWARDS_TABLE = `CREATE TABLE IF NOT EXISTS awards(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), usn varchar(255), category varchar(255),department varchar(255), filterDate Date, level varchar(255), eventName varchar(255), awardedBy varchar(255), status varchar(255), date Date, description text, COE varchar(255))`;
