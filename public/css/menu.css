@@ -5,10 +5,10 @@
   text-align: left;
   background-color: #fff;
   background-clip: padding-box;
-  padding: 30px;
+  padding: 40px;
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  width: 1125px;
+  width: 80%;
   left: 0;
   right: 0;
   top: 100%;
@@ -80,11 +80,21 @@
 }
 
 .menu-link .menu-text {
-  font-weight: 400;
-  font-size: 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
   text-transform: initial;
   display: flex;
   color: #3f4254;
+}
+
+@media (max-width: 1400px) {
+  .menu-link .menu-text {
+    font-weight: 600;
+    font-size: 0.675rem;
+    text-transform: initial;
+    display: flex;
+    color: #3f4254;
+  }
 }
 
 .menu-link .menu-text:hover {
