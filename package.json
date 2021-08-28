@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js -e ejs,js --ignore 'public/'",
+    "start": "node server.js",
+    "test": "nodemon server.js -e ejs,js --ignore 'public/'",
     "dev": "webpack --watch --config webpack.dev.config.js",
     "prod": "webpack  --config webpack.production.config.js",
     "seeddb": "node db/seedDB.js",
