@@ -2,6 +2,7 @@ const overlay = document.querySelector(".overlay");
 const alertMessage = document.getElementById("alert");
 const megaMenu = document.querySelector(".nav__menu--mega");
 const menu = document.querySelector(".nav__menu--submenu");
+const scrollBtn = document.getElementById("btn-back-to-top");
 
 if (alertMessage) {
   // console.log("Hiding Alert Message!");
@@ -28,5 +29,27 @@ const openMegaMenu = function () {
   }
 };
 
+/* Scroll to top button */
+
+//Get the button
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+const scrollFunction = function () {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+};
+
+const backToTop = function () {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
+
+scrollBtn.addEventListener("click", backToTop);
 overlay?.addEventListener("click", closeMegaMenu);
 megaMenu?.addEventListener("click", openMegaMenu);
