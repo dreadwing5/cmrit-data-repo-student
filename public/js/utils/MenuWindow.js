@@ -50,6 +50,6 @@ const backToTop = function () {
   document.documentElement.scrollTop = 0;
 };
 
-scrollBtn.addEventListener("click", backToTop);
+scrollBtn?.addEventListener("click", backToTop);
 overlay?.addEventListener("click", closeMegaMenu);
 megaMenu?.addEventListener("click", openMegaMenu);
