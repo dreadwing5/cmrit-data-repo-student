@@ -1,13 +1,18 @@
 import axios from "axios";
+import {
+  renderMessage,
+  renderErrorMessage,
+  renderSpinner,
+} from "../controller.js";
 
 export const insertData = async (data, url) => {
   try {
-    const resp = await axios.post(url, data);
-    document.getElementById("alert").style.display = "block";
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    setTimeout(() => window.location.reload(), 2000);
+    renderSpinner();
+    const res = await axios.post(url, data);
+    renderMessage();
   } catch (err) {
     // Handle Error Here
+    renderErrorMessage();
     console.error(err);
   }
 };
