@@ -12,6 +12,19 @@ import { quillConfig } from "./QuillConfig";
 
 import { sendGetRequest } from "../apis/COE";
 
+const quillContainer = document.querySelector("#editor-container");
+
+// if (quillContainer) {
+//   //Create a new instance of quill
+//   var quill = new Quill("#editor-container", quillConfig);
+// }
+
+export const quill = (function () {
+  if (!quillContainer) return;
+  const quill = new Quill("#editor-container", quillConfig);
+  return quill;
+})();
+
 export const isInsertMode =
   document.getElementById("myForm")?.dataset.isinsertmode;
 
@@ -60,9 +73,6 @@ tables?.forEach((table) => {
 
 if (isInsertMode === "true") {
   quillConfig.placeholder = "Add Description Here..";
-  let quill = new Quill("#editor-container", quillConfig);
-
-  //Create a new instance of quill in insert page
 }
 
 const editData = (row) => {

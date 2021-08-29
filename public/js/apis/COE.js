@@ -2,7 +2,7 @@ import axios from "axios";
 
 let flag = 1;
 export const sendGetRequest = async () => {
-  if (flag === 0) return; //Stop the dropdoen from sending multiple get
+  if (flag === 0) return; //Stop the dropdown from sending multiple get
   try {
     const resp = await axios.get("/dropdown/coe");
     for (const { name } of resp.data) {
