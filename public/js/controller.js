@@ -2,6 +2,7 @@ import { submitForm } from "./apis/FormData";
 import { isInsertMode, quill } from "./utils/Utils";
 import { validateForm } from "./utils/ValidateForm";
 import { scrollFunction } from "./utils/MenuWindow";
+import { loadCOE } from "./apis/COE";
 
 const submitBtn = document.querySelector(".submit__data--btn");
 
@@ -96,8 +97,14 @@ const controlDate = function () {
   });
 };
 
-const autoFillForm = function () {
+const autoFillForm = async function () {
   if (isInsertMode === "true" || isInsertMode === undefined) return;
+
+  const select = document.getElementById("select");
+
+  if (select) {
+    await loadCOE();
+  }
 
   let data = document.querySelector("#variableJSON")?.textContent;
 
@@ -114,6 +121,16 @@ const autoFillForm = function () {
   }
 };
 
+const controlDropdown = async function () {
+  const select = document.getElementById("select");
+  if (!select) return;
+  if (isInsertMode === "true" || isInsertMode === undefined) {
+    let load = true;
+    if (load) await loadCOE();
+    load = false;
+  }
+};
+
 // initial application setup
 
 const init = function () {
@@ -121,6 +138,7 @@ const init = function () {
   validateForm();
   controlTextBox();
   controlDate();
+  controlDropdown();
   window.onscroll = function () {
     scrollFunction();
   };
