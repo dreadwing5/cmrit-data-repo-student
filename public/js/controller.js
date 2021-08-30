@@ -1,4 +1,4 @@
-import { submitForm } from "./apis/FormData";
+import { submitForm } from "./utils/submitForm";
 import { isInsertMode, quill } from "./utils/Utils";
 import { validateForm } from "./utils/ValidateForm";
 import { scrollFunction } from "./utils/MenuWindow";
