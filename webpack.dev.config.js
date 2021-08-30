@@ -10,7 +10,6 @@ module.exports = {
   entry: {
     index: [
       "./public/js/controller.js",
-      "./public/js/utils/QuillConfig.js",
       "./public/js/utils/MenuWindow.js",
       "./public/js/utils/Utils.js",
     ],
