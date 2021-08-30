@@ -1,4 +1,5 @@
 import axios from "axios";
+import { wait, reload } from "../utils/helper.js";
 
 import {
   renderMessage,
@@ -16,9 +17,13 @@ export const updateData = async (data) => {
     renderSpinner();
     const resp = await axios.put(updateUrl, data);
     renderMessage();
+    await wait(1);
+    window.location.href = `/student/${event}`;
   } catch (err) {
     // Handle Error Here
     renderErrorMessage();
+    await wait(1);
+    reload();
     console.error(err);
   }
 };
