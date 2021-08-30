@@ -10,8 +10,6 @@ Quill.register("modules/imageResize", ImageResize);
 
 import { QUILL_CONFIG } from "./QuillConfig";
 
-import { sendGetRequest } from "../apis/COE";
-
 const quillContainer = document.querySelector("#editor-container");
 
 export const isInsertMode =
@@ -171,8 +169,3 @@ admin_table__data?.addEventListener("click", (e) => {
     sendDeleteRequest();
   }
 });
-
-//Handle dropdown menu here
-// const select = document.getElementById("select");
-
-// select?.addEventListener("click", sendGetRequest);
