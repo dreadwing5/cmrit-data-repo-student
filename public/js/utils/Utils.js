@@ -8,25 +8,23 @@ import ImageResize from "quill-image-resize";
 Quill.register("modules/imageUploader", ImageUploader);
 Quill.register("modules/imageResize", ImageResize);
 
-import { quillConfig } from "./QuillConfig";
+import { QUILL_CONFIG } from "./QuillConfig";
 
 import { sendGetRequest } from "../apis/COE";
 
 const quillContainer = document.querySelector("#editor-container");
 
-// if (quillContainer) {
-//   //Create a new instance of quill
-//   var quill = new Quill("#editor-container", quillConfig);
-// }
+export const isInsertMode =
+  document.getElementById("myForm")?.dataset.isinsertmode;
 
 export const quill = (function () {
   if (!quillContainer) return;
-  const quill = new Quill("#editor-container", quillConfig);
+  if (isInsertMode === "true") {
+    QUILL_CONFIG.placeholder = "Write your description here...";
+  }
+  const quill = new Quill("#editor-container", QUILL_CONFIG);
   return quill;
 })();
-
-export const isInsertMode =
-  document.getElementById("myForm")?.dataset.isinsertmode;
 
 /* Show the column name in report page */
 const column__names = document.querySelectorAll(".column__name");
@@ -70,10 +68,6 @@ tables?.forEach((table) => {
   const report__title = table.previousElementSibling;
   report__title.style.display = "";
 });
-
-if (isInsertMode === "true") {
-  quillConfig.placeholder = "Add Description Here..";
-}
 
 const editData = (row) => {
   // let eventName = row.dataset.mod;
@@ -178,7 +172,7 @@ admin_table__data?.addEventListener("click", (e) => {
   }
 });
 
-//Handle dropdown menu here
-const select = document.getElementById("select");
+// //Handle dropdown menu here
+sendGetRequest();
 
-select?.addEventListener("click", sendGetRequest);
+// select?.addEventListener("click", sendGetRequest);

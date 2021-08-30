@@ -8,11 +8,18 @@ router.get("/", (req, res) => {
   });
 });
 
-//Faculty Page Route
+//Student Page Route
+router.get("/search", (req, res) => {
+  const title = startCase(req.params.module); //Send the title of html page
+  res.render("fields/search", {
+    Username: "test",
+    title,
+  });
+});
 
 router.get("/student/:module", (req, res) => {
   const moduleName = snakeCase(req.params.module); //Dynamically render the page using url params
-  const title = startCase(req.params.module); //Send the tiltle of html page
+  const title = startCase(req.params.module); //Send the title of html page
   res.render(`fields/${moduleName}`, {
     title: title,
     Username: "test",
