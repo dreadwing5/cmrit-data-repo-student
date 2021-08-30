@@ -124,10 +124,21 @@ const autoFillForm = async function () {
 const controlDropdown = async function () {
   const select = document.getElementById("select");
   if (!select) return;
+
+  //This allow us to have all option in search page
+  if (isInsertMode === undefined) {
+    let option = document.createElement("option");
+    option.value = "all";
+    option.text = "All";
+    select.appendChild(option);
+  }
+
   if (isInsertMode === "true" || isInsertMode === undefined) {
     let load = true;
-    if (load) await loadCOE();
-    load = false;
+    select.addEventListener("click", async () => {
+      if (load) await loadCOE();
+      load = false;
+    });
   }
 };
 
