@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const sendGetRequest = async () => {
+export const loadCOE = async () => {
   try {
     const select = document.getElementById("select");
     const resp = await axios.get("/dropdown/coe");

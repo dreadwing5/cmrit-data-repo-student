@@ -172,7 +172,7 @@ admin_table__data?.addEventListener("click", (e) => {
   }
 });
 
-// //Handle dropdown menu here
-sendGetRequest();
+//Handle dropdown menu here
+const select = document.getElementById("select");
 
-// select?.addEventListener("click", sendGetRequest);
+select?.addEventListener("click", sendGetRequest);
