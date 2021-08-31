@@ -99,6 +99,8 @@ table__data?.addEventListener("click", (e) => {
 // Add Data
 
 const add__field = document.querySelector(".add-new");
+const tableName = document.querySelector(".table__name--dropdown")?.dataset
+  .tableName;
 add__field?.addEventListener("click", () => {
   const row = document.querySelector(".hidden-row");
   row.style.display = "";
@@ -129,7 +131,7 @@ add__field?.addEventListener("click", () => {
     const sendPostRequest = async () => {
       try {
         const data = { name: field__name.value };
-        const resp = await axios.post("/dropdown/coe", data);
+        const resp = await axios.post(`/dropdown/${tableName}`, data);
         submit__button.disabled = true;
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         document.getElementById("alert").style.display = "block";
@@ -155,7 +157,9 @@ admin_table__data?.addEventListener("click", (e) => {
     const sendDeleteRequest = async () => {
       try {
         const payload = { id: id };
-        const resp = await axios.delete("/dropdown/coe", { data: payload });
+        const resp = await axios.delete(`/dropdown/${tableName}`, {
+          data: payload,
+        });
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         // document.getElementById("alert").style.display = "block";
         // setTimeout(() => window.location.reload(), 1000);
