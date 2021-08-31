@@ -4,6 +4,7 @@ const { snakeCase, startCase } = require("lodash");
 
 router.get("/", (req, res) => {
   res.render("index", {
+    title: "Home",
     Username: "test",
   });
 });
