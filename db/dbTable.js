@@ -42,8 +42,8 @@ exports.CREATE_MENTORING_TABLE = `CREATE TABLE IF NOT EXISTS mentoring(id int NO
 
 exports.CREATE_PARENTS_TABLE = `CREATE TABLE IF NOT EXISTS patents(id int NOT NULL AUTO_INCREMENT PRIMARY KEY, facultyId varchar(255), rcid varchar(255), title varchar(255), agencyName varchar(255), submissionNumber varchar(255), grantAmount varchar(255), earnings varchar(255), patentNumber varchar(255), benefits varchar(255), patentLevel varchar(255), commercialized varchar(255), status varchar(255), specification varchar(255), grantDate date, submissionDate date, coe varchar(255), description varchar(255), filterDate date)`;
 
-exports.CREATE_DEPARTMENT_LIST_TABLE = `CREATE TABLE IF NOT EXISTS dept_list(id int Auto_increment , depname varchar(255), PRIMARY KEY(id))`;
+exports.CREATE_DEPARTMENT_LIST_TABLE = `CREATE TABLE IF NOT EXISTS department(id int AUTO_INCREMENT , name varchar(255), PRIMARY KEY(id))`;
 
-exports.CREATE_COE_TABLE = `CREATE TABLE IF NOT EXISTS coe(id int Auto_increment, name varchar(255), PRIMARY KEY(id))`;
+exports.CREATE_COE_TABLE = `CREATE TABLE IF NOT EXISTS coe(id int AUTO_INCREMENT, name varchar(255), PRIMARY KEY(id))`;
 
-exports.CREATE_CLUB_NAME_TABLE = `CREATE TABLE IF NOT EXISTS club_name(id int Auto_increment, name varchar(255), PRIMARY KEY(id))`;
+exports.CREATE_CLUB_NAME_TABLE = `CREATE TABLE IF NOT EXISTS club_name(id int AUTO_INCREMENT, name varchar(255), PRIMARY KEY(id))`;
