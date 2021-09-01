@@ -21,7 +21,8 @@ const formatDate = (date, format) => {
 };
 
 function handleRoute(req, res) {
-  let { event, fromDate, toDate, dept, coe, isDescriptionRequired } = req.body;
+  let { event, fromDate, toDate, department, coe, isDescriptionRequired } =
+    req.body;
   console.log(req.body);
   let tables = [];
 
@@ -43,7 +44,9 @@ function handleRoute(req, res) {
     /* This if condition checks if the department is null or not, basically it's going to filter the result based on department and coe */
 
     if (
-      (res.department == "NULL" || dept == "ALL" || res.department == dept) &&
+      (res.department == "NULL" ||
+        department == "all" ||
+        res.department == department) &&
       (coe == "all" || coe == res.coe)
     ) {
       data.push(res);

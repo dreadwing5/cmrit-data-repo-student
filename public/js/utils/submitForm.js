@@ -57,7 +57,7 @@ export const submitForm = () => {
 
   //This is done to set the date to the last month no matter when we submit the form
   const date = manageDate();
-  formData.date = date;
+  formData.filterDate = date;
 
   const url = myForm.action;
   isInsertMode === "false" ? updateData(formData) : insertData(formData, url);
