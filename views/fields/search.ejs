@@ -64,20 +64,8 @@
 
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="dept">Departments</label>
-                        <select class="custom-select d-block w-100" name="dept" required>
-                            <option value="">Choose...</option>
-                            <option value="ALL">All</option>
-                            <option value="CSE">CSE</option>
-                            <option value="ISE">ISE</option>
-                            <option value="ECE">ECE</option>
-                            <option value="MECH">MECH</option>
-                            <option value="CIV">CIVIL</option>
-                            <option value="TCE">TCE</option>
-                            <option value="MBA">MBA</option>
-                            <option value="MCA">MCA</option>
-                            <option value="Basic Science">Basic Science</option>
-                        </select>
+                        <label for="department">Departments</label>
+                        <%- include ("../partials/departments") %>
                     </div>
                 </div>
                 <div class="row data-row">
