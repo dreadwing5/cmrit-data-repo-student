@@ -1,7 +1,10 @@
-import { submitForm } from "./apis/FormData";
+import { submitForm } from "./utils/submitForm";
 import { isInsertMode, quill } from "./utils/Utils";
 import { validateForm } from "./utils/ValidateForm";
 import { scrollFunction } from "./utils/MenuWindow";
+import { loadDropdown } from "./apis/Dropdown";
+
+const dropdownList = document.querySelectorAll(".db__dropdown");
 
 const submitBtn = document.querySelector(".submit__data--btn");
 
@@ -96,21 +99,49 @@ const controlDate = function () {
   });
 };
 
-const autoFillForm = function () {
-  if (isInsertMode === "true" || isInsertMode === undefined) return;
+const autoFillForm = async function () {
+  if (
+    isInsertMode === "true" ||
+    isInsertMode === undefined ||
+    !dropdownList.length
+  )
+    return;
+
+  for (const dropdown of dropdownList) {
+    let tableName = dropdown.getAttribute("name");
+    await loadDropdown(tableName, dropdown);
+  }
 
   let data = document.querySelector("#variableJSON")?.textContent;
 
+  //Auto fill form
   for (const [key, value] of Object.entries(JSON.parse(data))) {
     if (key === "description") {
-      //new instance of quill in edit page
-      quill.clipboard.dangerouslyPasteHTML(0, value); //paste the description to quill editor
+      quill.clipboard.dangerouslyPasteHTML(0, value);
     }
 
     let field = document.getElementsByName(key)[0];
     if (field) {
       field.value = value;
     }
+  }
+};
+
+const controlDropdown = function () {
+  if (!dropdownList.length) return;
+
+  if (isInsertMode === "true" || isInsertMode === undefined) {
+    dropdownList?.forEach((dropdown) => {
+      //This allow us to have all option in search page
+      if (isInsertMode === undefined) {
+        let option = document.createElement("option");
+        option.value = "all";
+        option.text = "All";
+        dropdown.appendChild(option);
+      }
+      let tableName = dropdown.getAttribute("name");
+      loadDropdown(tableName, dropdown);
+    });
   }
 };
 
@@ -121,6 +152,7 @@ const init = function () {
   validateForm();
   controlTextBox();
   controlDate();
+  controlDropdown();
   window.onscroll = function () {
     scrollFunction();
   };
